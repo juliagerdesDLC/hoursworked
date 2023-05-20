@@ -1,49 +1,112 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hours Submission</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="">
-<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css">
-<link rel="stylesheet" href="bootstrap.css">
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hours Submission</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css">
+  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<aside class="sidebar">
- <header>
-   <h3 id="main-heading" class="heading">Hours Submission</h3>
-   <h4 class="sub-heading">Time Sheet</h4>
- </header>
-<main>
- <section>
+  <aside class="sidebar">
+    <header>
+      <h3 id="main-heading" class="heading">Hours Submission</h3>
+      <h4 class="sub-heading">Time Sheet</h4>
+    </header>
+  <main>
+    <section>
 <form method="post" action="process.php">
-<fieldset>
- <legend>DLC BABY</legend>
+  <fieldset>
+    <legend>DLC BABY</legend>
 
- <div class="form-group">
-        <label for="your_name">Your Name:</label>
-        <select id="your_name" name="your_name">
-          <option value="Tom Stewart">Tom Stewart</option>
-          <option value="Julia Gerdes">Julia Gerdes</option>
-        </select>
+    <div class="form-group">
+      <label for="your_name"> Name:</label>
+      <input type="text" name="your_name" id="your_name">
       </div>
- <div class="form-group">
-   <label for="your_hours"> Hours Worked:</label>
-   <input type="number" name="your_hours" id="your_hours">
- </div>
- <div class="form-group">
-   <label for="notes">  Comments:</label>
-   <input type="text" name="notes" id="notes">
- </div>
- <input type="hidden" name="save" value="true">
-</fieldset>
-<fieldset>
- <input type="submit" value="Submit">
-</fieldset>
+
+    <div class="form-group">
+      <label for="your_hours"> Hours Worked:</label>
+      <input type="number" name="your_hours" id="your_hours">
+    </div>
+    <div class="form-group">
+      <label for="notes">  Comments:</label>
+      <input type="text" name="notes" id="notes">
+    </div>
+    <form>
+  <label>
+    <input type="checkbox" name="day" value="monday">
+    Monday
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="day" value="tuesday">
+    Tuesday
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="day" value="wednesday">
+    Wednesday
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="day" value="thursday">
+    Thursday
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="day" value="friday">
+    Friday
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="day" value="saturday">
+    Saturday
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="day" value="sunday">
+    Sunday
+  </label>
+  <br>
+  <input type="submit" value="Submit">
 </form>
- </section>
-</main>
+
+<tr>
+     <td>Total:</td>
+     <td id="total-hours">0</td>
+   </tr>
+ </tfoot>
+</table>
+
+<script>
+ const hourInputs = document.querySelectorAll('.hours-input');
+ const totalHoursElement = document.getElementById('total-hours');
+
+ hourInputs.forEach(input => {
+   input.addEventListener('input', calculateTotal);
+ });
+
+ function calculateTotal() {
+   let totalHours = 0;
+   hourInputs.forEach(input => {
+     if (input.value !== '') {
+       totalHours += parseFloat(input.value);
+     }
+   });
+   totalHoursElement.textContent = totalHours;
+ }
+</script>
+
+    <input type="hidden" name="save" value="true">
+  </fieldset>
+  <fieldset>
+    <input type="submit" value="Submit">
+  </fieldset>
+</form>
+    </section>
+  </main>
 
 
 
